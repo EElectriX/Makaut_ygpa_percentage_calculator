@@ -44,6 +44,8 @@
             background-size: contain;
             background-repeat: repeat; 
             position: relative;
+            height: 100vh;
+            width: 100vw;
         }
         span{
             background-color: black;
@@ -147,7 +149,7 @@
         const odd_credit =parseInt( document.getElementById('odd_credit').value)
         const odd_credit_points =parseInt( document.getElementById('odd_credit_points').value)
         const odd_sgpa = document.getElementById('odd_sgpa')
-        const odd_sgpa_sem = (odd_credit / odd_credit_points).toFixed(2)
+        const odd_sgpa_sem = (odd_credit_points / odd_credit).toFixed(2)
         // console.log(odd_sgpa_sem)
         odd_sgpa.innerHTML = `<h3>Your odd semester SGPA is: ${odd_sgpa_sem}</h3>`
 
@@ -155,7 +157,7 @@
         const even_credit =parseInt( document.getElementById('even_credit').value)
         const even_credit_points =parseInt( document.getElementById('even_credit_points').value)
         const even_sgpa = document.getElementById('even_sgpa')
-        const even_sgpa_sem = (even_credit / even_credit_points).toFixed(2)
+        const even_sgpa_sem = (even_credit_points / even_credit).toFixed(2)
         // console.log(even_sgpa_sem)
         even_sgpa.innerHTML = `<h3>Your even semester SGPA is: ${even_sgpa_sem}</h3>`
 
@@ -165,7 +167,7 @@
         //console.log(credit)
         const credit_points=odd_credit_points+even_credit_points
         //console.log(credit_points)
-        yggpa=(credit/credit_points).toFixed(10)
+        yggpa=(credit_points/credit).toFixed(10)
         Percentagee=((yggpa-0.75)*10).toFixed(10)
         
         console.log(yggpa)
