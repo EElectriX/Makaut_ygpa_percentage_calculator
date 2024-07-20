@@ -1,180 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAKAUT Calculator</title>
     <style>
-        button{ 
-            width: 80%; 
-            background-color: rgb(66, 231, 66);
-            text-align: center;
-             font-size: 100%; 
-             padding: 0%;  
-             box-shadow: 5px 5px 10px;
-             font-weight:999px;
-             cursor: pointer;
-            
-        }
-        button:hover{
-            background-color: rgb(66, 231, 66);
-            color: black;
-            font-size: 110%;
-            box-shadow: 5px 5px 10px;
-            text-shadow: 4px -4px 4px black;
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #1d2b64, #f8cdda);
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+
+      header {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border-bottom: 5px solid #66e742;
+      }
+
+      header img {
+        height: 120px;
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      }
+
+      header h1 {
+        margin: 20px 0;
+        font-size: 2.5em;
+        color: #fff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      form {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        margin: 20px;
+        width: 90%;
+        max-width: 800px;
+      }
+
+      form h2 {
+        border-bottom: 3px solid #66e742;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      form h3 {
+        margin: 15px 0;
+        color: #fff;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      form input {
+        width: calc(100% - 20px);
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #66e742;
+        background: #333;
+        color: #fff;
+        font-size: 1em;
+        margin-bottom: 20px;
+        outline: none;
+      }
+
+      form input:invalid {
+        border-color: red;
+      }
+
+      button {
+        width: 100%;
+        background: #66e742;
+        color: #000;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.3s, transform 0.3s;
+      }
+
+      button:hover {
+        background: #4dbf4d;
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .result-section {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 15px;
+        margin: 20px;
+        width: 90%;
+        max-width: 800px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .result-section h2 {
+        color: #fff;
+      }
+
+      .result-section img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      footer {
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        border-top: 5px solid #66e742;
+      }
+
+      footer a {
+        color: #66e742;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      footer i {
+        margin-right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2em;
         }
 
-        div{
-            color: white;
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            box-shadow: 5px 5px 10px;
-        }
-        div:hover{
-           
-            font-size: 110%;
-            
-            box-shadow: 5px 5px 10px;
-            text-shadow: 4px -4px 4px black;
-        }
-        body{   
-            margin: 0vh; 
-            padding: 0vh; 
-            background-image: url('images/makaut_image.jpg');
-            background-size: contain;
-            background-repeat: repeat; 
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-        }
-        span{
-            background-color: black;
+        form {
+          padding: 20px;
         }
 
+        button {
+          font-size: 1em;
+          padding: 12px;
+        }
+      }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="images/makaut_logo.jpg" alt="MAKAUT Logo" />
+      <h1>MAKAUT Percentage and YGPA Calculator</h1>
+    </header>
 
-<center >
-    
-        <img src="images\makaut logo.jpg" alt="" style="height: 20%;width: 150px;">
-
-   
-    <h1 style="color: white;"><u>MAKAUT PERCENTAGE AND YGPA CALCULATOR</u></h1>
-    <form>
-        <div style="border: 2px solid; padding: 1vh; margin: 5vh; ">
-            <h2><u>For odd semester:</u></h2>
-            <h3>
-                <label for="odd_credit">Enter <span> total credit</span> of the odd sem:</label>
-                <input type="number" id="odd_credit" placeholder="total credit in odd sem">
-            </h3>
-            <h3>
-                <label for="odd_credit_points">Enter your <span> total obtained credit </span> points:</label>
-                <input type="number" id="odd_credit_points" placeholder="total obtained credit points">
-            </h3>
-            <div id="odd_sgpa"></div>
+    <main>
+      <form id="calculator-form">
+        <div class="result-section">
+          <h2>For Odd Semester</h2>
+          <h3>
+            <label for="odd_credit"
+              >Enter <span style="color: #66e742">total credit</span> of the odd
+              semester:</label
+            >
+            <input
+              type="number"
+              id="odd_credit"
+              placeholder="Total credit in odd semester"
+              required
+            />
+          </h3>
+          <h3>
+            <label for="odd_credit_points"
+              >Enter your
+              <span style="color: #66e742">total obtained credit</span>
+              points:</label
+            >
+            <input
+              type="number"
+              id="odd_credit_points"
+              placeholder="Total obtained credit points"
+              required
+            />
+          </h3>
+          <div id="odd_sgpa"></div>
         </div>
-        <div style="border: 2px solid; padding: 1vh; margin: 5vh;">
-            <h2><u>For even semester:</u></h2>
-            <h3>
-                <label for="even_credit">Enter <span>total credit</span> of the even sem:</label>
-                <input type="number" id="even_credit" placeholder="total credit in even sem">
-            </h3>
-            <h3>
-                <label for="even_credit_points">Enter your <span>total obtained credit</span> points:</label>
-                <input type="number" id="even_credit_points" placeholder="total obtained credit points">
-            </h3>
-           <div id="even_sgpa"></div>
+
+        <div class="result-section">
+          <h2>For Even Semester</h2>
+          <h3>
+            <label for="even_credit"
+              >Enter <span style="color: #66e742">total credit</span> of the
+              even semester:</label
+            >
+            <input
+              type="number"
+              id="even_credit"
+              placeholder="Total credit in even semester"
+              required
+            />
+          </h3>
+          <h3>
+            <label for="even_credit_points"
+              >Enter your
+              <span style="color: #66e742">total obtained credit</span>
+              points:</label
+            >
+            <input
+              type="number"
+              id="even_credit_points"
+              placeholder="Total obtained credit points"
+              required
+            />
+          </h3>
+          <div id="even_sgpa"></div>
         </div>
-        <button id="submit" type="submit" ><h3>Submit</h3></button>
-    </form>
-   
-    <hr style="border: 2px solid white;">
-    <div style="border: 2px solid; padding: 1vh; margin: 5vh;">
-        <h2>
-            <label for="ygpa">Your obtained Ygpa is:</label>
-           <div id="ygpa"></div>
-        </h2>
-    </div>
-    <div style="border: 2px solid; padding: 1vh; margin: 5vh;">
-        <h2>
-            <label for="Percentage">Your obtained Percentage is:</label>
-           <div id="percentage"></div>
-        </h2>
-    </div>
 
-    <div style="border: 2px solid; padding: 1vh; margin: 5vh;">
-        <h4>
-            Location of total credit and obtain total credit:
-        </h4>
-        <img src="images/DUMMY RESULT.jpg" alt="" style="max-width: 100%; max-width: 100%;">
-    </div>
+        <button type="submit"><h3>Submit</h3></button>
+      </form>
 
-    <div style="border: 2px solid; padding: 1vh; margin: 5vh;">
-        <h4>
-            Formula to calculate SGPA and YGPA:
-        </h4>
-        <img src="images\sgpa and ygpa calculation.png" alt="" style="max-width: 100%; max-width: 100%;">
-    </div>
+      <div class="result-section">
+        <h2>Your Obtained YGPA is:</h2>
+        <div id="ygpa"></div>
+      </div>
 
-    <div style="border: 2px solid; padding: 1vh; margin: 5vh;">
-        <h4>
-            Formula to calculate Percentage given by MAKAUT:
-        </h4>
-        <img src="images\makaut_percentage_conversion.png" alt="" style="max-width: 100%; max-height: 100% ;">
-    </div>
+      <div class="result-section">
+        <h2>Your Obtained Percentage is:</h2>
+        <div id="percentage"></div>
+      </div>
 
-</center>
-<footer style="background-color: black; color: white; margin: 0px;">
-    <center>
-        <p>Thank you for using my Website.</p>
-        <p>Developed by: Saptarshi Mondal</p>
-        <p>Email: mondalsaptarshi0001@gmail.com</p>
-        <p>Makaut Website: <a href="https://www.makautexam.net/"><i class="fa-solid fa-link" style="color: white;"></i></a></p>
-    <p>check my Linked In: <a href="https://www.linkedin.com/in/saptarshi-mondal-9a474a1a6"><i class="fa-brands fa-linkedin" style="color: #74C0FC;"></i> </a> 
-    </p>
-    <p>check my Ginthub: <a href="https://github.com/EElectriX"> <i class="fa-brands fa-square-github" style="color: white;"></i> </a> 
-    </p>
-    <p>This github repository link: <a href="https://github.com/EElectriX/Makaut_ygpa_percentage_calculator.git"><i class="fa-solid fa-code-compare" style="color: white;"></i></a></p>
-    </center>
-</footer>
-<script>
-    const form = document.querySelector('form')
-    form.addEventListener('submit', function(e) {
-        e.preventDefault()
-        alert("Please scroll down to see your result")
-        const odd_credit =parseInt( document.getElementById('odd_credit').value)
-        const odd_credit_points =parseInt( document.getElementById('odd_credit_points').value)
-        const odd_sgpa = document.getElementById('odd_sgpa')
-        const odd_sgpa_sem = (odd_credit_points / odd_credit).toFixed(2)
-        // console.log(odd_sgpa_sem)
-        odd_sgpa.innerHTML = `<h3>Your odd semester SGPA is: ${odd_sgpa_sem}</h3>`
+      <div class="result-section">
+        <h4>Location of Total Credit and Obtain Total Credit:</h4>
+        <img src="images/DUMMY_RESULT.jpg" alt="Credit and Points" />
+      </div>
 
+      <div class="result-section">
+        <h4>Formula to Calculate SGPA and YGPA:</h4>
+        <img
+          src="images/sgpa_and_ygpa_calculation.png"
+          alt="SGPA and YGPA Calculation"
+        />
+      </div>
 
-        const even_credit =parseInt( document.getElementById('even_credit').value)
-        const even_credit_points =parseInt( document.getElementById('even_credit_points').value)
-        const even_sgpa = document.getElementById('even_sgpa')
-        const even_sgpa_sem = (even_credit_points / even_credit).toFixed(2)
-        // console.log(even_sgpa_sem)
-        even_sgpa.innerHTML = `<h3>Your even semester SGPA is: ${even_sgpa_sem}</h3>`
+      <div class="result-section">
+        <h4>Formula to Calculate Percentage Given by MAKAUT:</h4>
+        <img
+          src="images/makaut_percentage_conversion.png"
+          alt="Percentage Conversion"
+        />
+      </div>
+    </main>
 
-        const ygpa = document.getElementById('ygpa')
-        const Percentage = document.getElementById('percentage')
-        const credit=odd_credit+even_credit
-        //console.log(credit)
-        const credit_points=odd_credit_points+even_credit_points
-        //console.log(credit_points)
-        yggpa=(credit_points/credit).toFixed(10)
-        Percentagee=((yggpa-0.75)*10).toFixed(10)
-        
-        console.log(yggpa)
-        ygpa.innerHTML = `<h2>${yggpa}</h2>`
-        //console.log(Percentagee)
-        Percentage.innerHTML = `<h2>${Percentagee}%</h2>`
-    })
-</script>
-</body>
+    <footer>
+      <p>Thank you for using my Website.</p>
+      <p>Developed by: Saptarshi Mondal</p>
+      <p>Contributions by: Ankur Halder</p>
+      <p>Email: mondalsaptarshi0001@gmail.com</p>
+      <p>
+        MAKAUT Website:
+        <a href="https://www.makautexam.net/"
+          ><i class="fa-solid fa-link"></i
+        ></a>
+      </p>
+      <p>
+        LinkedIn:
+        <a href="https://www.linkedin.com/in/saptarshi-mondal-9a474a1a6"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+      </p>
+      <p>
+        GitHub:
+        <a href="https://github.com/EElectriX"
+          ><i class="fa-brands fa-square-github"></i
+        ></a>
+      </p>
+      <p>
+        Ankur's GitHub:
+        <a href="https://github.com/ankurhalder"
+          ><i class="fa-brands fa-square-github"></i
+        ></a>
+      </p>
+      <p>
+        This GitHub Repository:
+        <a
+          href="https://github.com/EElectriX/Makaut_ygpa_percentage_calculator.git"
+          ><i class="fa-solid fa-code-compare"></i
+        ></a>
+      </p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("calculator-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Please scroll down to see your result");
+
+          const odd_credit = parseInt(
+            document.getElementById("odd_credit").value
+          );
+          const odd_credit_points = parseInt(
+            document.getElementById("odd_credit_points").value
+          );
+          const even_credit = parseInt(
+            document.getElementById("even_credit").value
+          );
+          const even_credit_points = parseInt(
+            document.getElementById("even_credit_points").value
+          );
+
+          // Validate inputs
+          if (
+            isNaN(odd_credit) ||
+            isNaN(odd_credit_points) ||
+            odd_credit <= 0
+          ) {
+            document.getElementById(
+              "odd_sgpa"
+            ).innerHTML = `<h3 style="color: red;">Please enter valid data for odd semester.</h3>`;
+            return;
+          }
+          if (
+            isNaN(even_credit) ||
+            isNaN(even_credit_points) ||
+            even_credit <= 0
+          ) {
+            document.getElementById(
+              "even_sgpa"
+            ).innerHTML = `<h3 style="color: red;">Please enter valid data for even semester.</h3>`;
+            return;
+          }
+
+          const odd_sgpa_sem = (odd_credit_points / odd_credit).toFixed(2);
+          const even_sgpa_sem = (even_credit_points / even_credit).toFixed(2);
+
+          document.getElementById(
+            "odd_sgpa"
+          ).innerHTML = `<h3>Your odd semester SGPA is: ${odd_sgpa_sem}</h3>`;
+          document.getElementById(
+            "even_sgpa"
+          ).innerHTML = `<h3>Your even semester SGPA is: ${even_sgpa_sem}</h3>`;
+
+          const credit = odd_credit + even_credit;
+          const credit_points = odd_credit_points + even_credit_points;
+          const yggpa = (credit_points / credit).toFixed(2);
+          const percentagee = ((yggpa - 0.75) * 10).toFixed(2);
+
+          document.getElementById("ygpa").innerHTML = `<h2>${yggpa}</h2>`;
+          document.getElementById(
+            "percentage"
+          ).innerHTML = `<h2>${percentagee}%</h2>`;
+        });
+
+      // Real-time validation
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", function () {
+          if (this.validity.valueMissing) {
+            this.setCustomValidity("This field is required.");
+          } else if (this.validity.typeMismatch) {
+            this.setCustomValidity("Please enter a valid number.");
+          } else if (
+            this.validity.rangeOverflow ||
+            this.validity.rangeUnderflow
+          ) {
+            this.setCustomValidity("Value is out of range.");
+          } else {
+            this.setCustomValidity("");
+          }
+          this.reportValidity();
+        });
+      });
+    </script>
+  </body>
 </html>
