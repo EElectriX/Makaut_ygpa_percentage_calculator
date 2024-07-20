@@ -24,6 +24,8 @@
         height: 120px;
         border-radius: 50%;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        max-width: 100%;
+        height: auto;
       }
 
       header h1 {
@@ -69,7 +71,7 @@
       }
 
       form input {
-        width: calc(100% - 20px);
+        width: calc(100% - 24px);
         padding: 12px;
         border-radius: 8px;
         border: 1px solid #66e742;
@@ -147,7 +149,9 @@
       footer i {
         margin-right: 8px;
       }
-
+      h4 {
+        color: #fff;
+      }
       @media (max-width: 768px) {
         header h1 {
           font-size: 2em;
@@ -160,6 +164,35 @@
         button {
           font-size: 1em;
           padding: 12px;
+        }
+        .result-section {
+          background: rgba(0, 0, 0, 0.7);
+          padding: 20px;
+          border-radius: 15px;
+          margin: 20px;
+          width: 80%;
+          max-width: 300px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      @media (max-width: 480px) {
+        header h1 {
+          font-size: 1.5em;
+        }
+
+        form input {
+          width: calc(100% - 16px);
+        }
+
+        button {
+          font-size: 0.9em;
+          padding: 10px;
+        }
+
+        footer {
+          font-size: 0.8em;
+          padding: 15px;
         }
       }
     </style>
@@ -332,7 +365,6 @@
             document.getElementById("even_credit_points").value
           );
 
-          // Validate inputs
           if (
             isNaN(odd_credit) ||
             isNaN(odd_credit_points) ||
@@ -375,7 +407,6 @@
           ).innerHTML = `<h2>${percentagee}%</h2>`;
         });
 
-      // Real-time validation
       document.querySelectorAll("input").forEach((input) => {
         input.addEventListener("input", function () {
           if (this.validity.valueMissing) {
